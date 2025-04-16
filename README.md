@@ -1,2 +1,2 @@
 # Krunker-Shader-Editor
-A Text based editor to make Krunker.io shader mods.
+A Text editor to make Krunker.io shader mods.
