@@ -10,7 +10,7 @@ Userscript is supported on tampermonkey or clients that allow adding custom user
 <br>After adding Userscript,
 Open Mod Menu and at the top right corner there will be a shader editor btn.
 
-<img src="./assets/modmenu.png?raw=true" width="450px">
+<img src="https://raw.githubusercontent.com/BluZed/Krunker-Shader-Editor/refs/heads/main/assets/modmenu.png" width="450px">
 If there is no shader editor btn,<br>
 For clients: Load game, Click join button and paste the url https://krunker.io/?game=shader <br>
 For browser: directly load the url https://krunker.io/?game=shader.
