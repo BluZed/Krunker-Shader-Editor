@@ -19,6 +19,32 @@ const log = console.log;
 const local_get = globalWindow.localStorage.getItem.bind(globalWindow.localStorage);
 let shown = false;
 let editorWindow = null;
+{
+    // adding the shader editor btn required some braincells
+    // or i have way too less braincells to not do this an easier way
+    let windows = [];
+    Object.defineProperty(globalWindow, "windows", {
+        set:(e)=>{
+            windows=e;
+            const modwin = globalWindow.windows.filter(e=>{return e.label === "mods"})[0];
+            if(modwin){
+                const gen = modwin.gen.bind(modwin);
+                modwin.gen = ()=>{
+                    setTimeout(()=>{
+                        if(!(document.getElementById("shaderLink"))){
+                            const el = ((Array.from(document.querySelectorAll(".menuLink")).filter(e=>{return e.href && e.href.includes("viewer")}))[0]);
+                            if(el){
+                                el.insertAdjacentHTML("afterend",` | <a href="https://krunker.io/?game=shader" id="shaderLink">Shader Editor</a>`)
+                            }
+                        }
+                    },16)
+                    return gen();
+                }
+            }
+        },
+        get:()=>{return windows;}
+    })
+}
 globalWindow.localStorage.getItem = (id) => {
     if(id == "custMap" && window.location.search.includes("shader")){
         log("shaders> map override done");
