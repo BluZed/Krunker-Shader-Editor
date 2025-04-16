@@ -11,7 +11,7 @@ After adding Userscript,<br><br>
 Open Mod Menu and at the top right corner there will be a shader editor btn.<br><br>
 
 <img src="./assets/modmenu.png?raw=true" width="450px">
-<br><br>
+<br>
 If there isnt,<br>
-For clients: Load game, Click join button and paste the url `https://krunker.io/?game=shader` <br>
-For browser: directly load the url `https://krunker.io/?game=shader`.
+For clients: Load game, Click join button and paste the url https://krunker.io/?game=shader <br>
+For browser: directly load the url https://krunker.io/?game=shader.
