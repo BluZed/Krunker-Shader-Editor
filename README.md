@@ -8,10 +8,9 @@ You can simply open [https://bluzed.github.io/Krunker-Shader-Editor/](https://bl
 Userscript is supported on tampermonkey or clients that allow adding custom userscripts like crankshaft or client++ pico.<br>
 [Click here to download/add userscript.](https://github.com/BluZed/Krunker-Shader-Editor/raw/refs/heads/main/editor.user.js)<br>
 After adding Userscript,<br><br>
-Open Mod Menu and at the top right corner there will be a shader editor btn.<br><br>
+Open Mod Menu and at the top right corner there will be a shader editor btn.
 
 <img src="./assets/modmenu.png?raw=true" width="450px">
-<br>
-If there isnt,<br>
+If there is no shader editor btn,<br>
 For clients: Load game, Click join button and paste the url https://krunker.io/?game=shader <br>
 For browser: directly load the url https://krunker.io/?game=shader.
