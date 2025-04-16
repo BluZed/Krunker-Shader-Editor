@@ -7,5 +7,5 @@ Userscript is supported on tampermonkey or clients that allow adding custom user
 Afer adding Userscript,<br>
 For clients: Load game, Click join button and paste the url `https://krunker.io/?game=shader` <br>
 For browser: directly load the url `https://krunker.io/?game=shader`.
-
-More info coming soon
+<br><br>
+![img](./assets/page.PNG?raw=true)
