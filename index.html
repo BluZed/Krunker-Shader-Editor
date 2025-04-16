@@ -1,0 +1,395 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Krunker Shader Editor</title>
+    <style>
+        @font-face {
+            font-family: krfont;
+            src: url(data:font/ttf;base64,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) format('truetype');
+            font-weight: normal;
+            font-style: normal;
+        }
+
+        body {
+            margin: 0;
+            display: flex;
+            flex-direction: column;
+            height: 100vh;
+            font-family: monospace;
+        }
+
+        header,
+        footer {
+            padding: 1em;
+            background: #222;
+            color: #fff;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        header {
+            justify-content: center;
+        }
+
+        #title-logo {
+            font-family: krfont;
+            font-size: 1.5rem;
+        }
+
+        select,
+        input[type="text"] {
+            background: #444;
+            color: #fff;
+            border: none;
+            padding: 0.5em;
+            margin-right: 0.5em;
+            outline: none;
+        }
+
+        .top-bar {
+            padding: 1em;
+            background: #111;
+            color: #fff;
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5em;
+        }
+
+        .editor-container {
+            flex: 1;
+            display: flex;
+            background: #0a0a0a;
+            overflow: hidden;
+        }
+
+        .line-numbers {
+            background: #111;
+            color: #666;
+            padding: 1em 0.5em;
+            text-align: right;
+            user-select: none;
+            font-family: monospace;
+            font-size: 1em;
+        }
+
+        .code-editor {
+            flex: 1;
+            border: none;
+            padding: 1em;
+            font-family: monospace;
+            font-size: 1em;
+            color: white;
+            background: #0a0a0a;
+            outline: none;
+            resize: none;
+        }
+
+        footer button,
+        .top-bar button {
+            background: #444;
+            color: #fff;
+            border: none;
+            padding: 0.5em 1em;
+            cursor: pointer;
+        }
+
+        footer button:hover,
+        .top-bar button:hover {
+            background: #666;
+        }
+
+        #infoOverlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            background: rgba(0, 0, 0, 0.6);
+            z-index: 99;
+        }
+
+        #infoPopup {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: #222;
+            color: #fff;
+            padding: 1em;
+            border: 1px solid #555;
+            z-index: 100;
+            font-size: 0.9em;
+            min-width: 250px;
+            display: none;
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <div id="title-logo">Krunker Shader Editor</div>
+    </header>
+
+    <div class="top-bar">
+        <button onclick="importjson()">Import JSON</button>
+        <button onclick="loadSave()">Load last save</button>
+        <div style="margin: auto;"></div>
+        <input type="text" style="background: grey;" id="shaderName" placeholder="Shader Name"
+            value="New Krunker Shader">
+        <button onclick="promptAddUniform()">Add Uniform</button>
+        <button onclick="promptRemoveUniform()">Remove Uniform</button>
+        <button onclick="toggleInfo()">Info</button>
+    </div>
+
+    <div class="editor-container">
+        <div class="line-numbers" id="lineNumbers">1</div>
+        <textarea id="shaderCode" class="code-editor" placeholder="Write your shader code here..."></textarea>
+    </div>
+
+    <footer>
+        <div style="margin: auto;">
+            <select id="shaderType">
+                <option value="vertex" selected>Vertex Shader</option>
+                <option value="fragment">Fragment Shader</option>
+            </select>
+            <button style="opacity: 0; pointer-events: none;"></button>
+            <button onclick="saveShader()">Save</button>
+            
+            <button style="opacity: 0; pointer-events: none;"></button>
+            <button onclick="loadShaderIngame()">Load In-Game</button>
+            <button onclick="clearShaders()">Clear In-Game Shaders</button>
+            <button style="opacity: 0; pointer-events: none;"></button>
+            <button onclick="exportjson()">Export JSON</button>
+        </div>
+    </footer>
+
+    <div id="infoOverlay" onclick="toggleInfo()"></div>
+    <div id="infoPopup"></div>
+
+    <script>
+        const shaderCode = document.getElementById('shaderCode');
+        const lineNumbers = document.getElementById('lineNumbers');
+        const shaderType = document.getElementById('shaderType');
+        const shaderName = document.getElementById('shaderName');
+        const infoPopup = document.getElementById('infoPopup');
+        const infoOverlay = document.getElementById('infoOverlay');
+        class KrnkShader {
+            credits = "";
+            uniforms = {};
+            fragmentShader = "";
+            vertexShader = "";
+            setVertexShader = (shader) => {
+                this.vertexShader = shader;
+                this.lastModified = Date.now();
+            }
+            setFragmentShader = (shader) => {
+                this.fragmentShader = shader;
+                this.lastModified = Date.now();
+            }
+            addUniform = (key, val = null) => {
+                this.uniforms[key] = { value: val };
+            }
+            removeUniform = (key) => {
+                delete this.uniforms[key];
+            }
+            constructor() {
+                this.createdAt = Date.now();
+                this.lastModified = this.createdAt;
+                this.name = "New Krunker Shader";
+            }
+            toJSONString() {
+                return JSON.stringify({
+                    credits: this.credits,
+                    uniforms: this.uniforms,
+                    fragmentShader: this.fragmentShader,
+                    vertexShader: this.vertexShader
+                });
+            }
+            fromJSON(jsondata) {
+                Object.assign(this, jsondata);
+                if (typeof updateInputDivs === "function") { updateInputDivs() };
+                return this;
+            }
+            fromSaveInstance(jsondata) {
+                return this.fromJSON(jsondata);
+            }
+        }
+
+        let currentShader = new KrnkShader();
+
+        shaderType.addEventListener('change', () => {
+            switch (shaderType.value) {
+                case "vertex":
+                    currentShader.fragmentShader = shaderCode.value;
+                    shaderCode.value = currentShader.vertexShader;
+                    break
+                case "fragment":
+                    currentShader.vertexShader = shaderCode.value;
+                    shaderCode.value = currentShader.fragmentShader;
+                    break
+            }
+            updateLineNumbers();
+        });
+
+        function updateLineNumbers() {
+            const lines = shaderCode.value.split('\n').length;
+            lineNumbers.innerText = Array.from({ length: lines }, (_, i) => i + 1).join('\n');
+        }
+
+        shaderCode.addEventListener('input', () => {
+            updateLineNumbers();
+            currentShader.lastModified = Date.now();
+            switch (shaderType.value) {
+                case "vertex":
+                    currentShader.vertexShader = shaderCode.value;
+                    break
+                case "fragment":
+                    currentShader.fragmentShader = shaderCode.value;
+                    break
+            }
+        });
+
+        shaderCode.addEventListener('scroll', () => {
+            lineNumbers.scrollTop = shaderCode.scrollTop;
+        });
+
+        shaderName.addEventListener('input', () => {
+            currentShader.name = shaderName.value;
+            currentShader.lastModified = Date.now();
+        })
+
+        function updateInputDivs() {
+            shaderType.value = "vertex";
+            shaderName.value = currentShader.name;
+            shaderCode.value = currentShader.vertexShader;
+        }
+
+        function saveShader() {
+            localStorage.setItem("last_shader_save", JSON.stringify(currentShader));
+        }
+
+        function loadSave() {
+            const save = localStorage.getItem("last_shader_save");
+            if (save) {
+                currentShader = new KrnkShader().fromSaveInstance(JSON.parse(save));
+                updateInputDivs();
+            }
+        }
+
+        function importjson() {
+            let jsondata = window.prompt("Enter JSON data: ");
+            if(jsondata){
+                jsondata = JSON.parse(importjson);
+                if(jsondata.vertexShader && jsondata.fragmentShader){
+                    currentShader = new KrnkShader().fromJSON(jsondata);
+                }
+            }
+        }
+
+        function exportjson() {
+            saveShader();
+            const data = currentShader.toJSONString();
+            const link = document.createElement("a");
+            link.href = URL.createObjectURL(new Blob([data], { type: "text/plain" }));
+            link.download = "shader.json";
+            document.body.appendChild(link);
+            link.click();
+            link.remove();
+        }
+
+        function clearShaders() {
+            window.opener.showWindow(1);
+            window.opener.windows[0].changeTab(window.opener.windows[0].tabs.advanced.map(e=>e.name.toLowerCase()).indexOf("render"));
+            (new DOMParser().parseFromString(window.opener.windows[0].getSettings(), 'text/html')).querySelectorAll("input[type=checkbox]").forEach(el => {
+                let caller = el.getAttribute("onclick");
+                if (caller && caller.includes("setShaderInput")) {
+                    caller = caller.replace("this.checked", "0");
+                    opener.eval(caller);
+                }
+            })
+            window.opener.closWind()
+        }
+
+        async function loadShaderIngame() {
+            saveShader();
+            try{clearShaders()}catch{
+                alert("could not clear shaders automatically. please manually uncheck shaders from settings.");
+            };
+            const modBlob = await createShaderModZipBlob(currentShader);
+            const modData = await blobToDataURL(modBlob);
+            window.opener.loadModPack(modData);
+        }
+
+        function blobToDataURL(blob) {
+            return new Promise((resolve, reject) => {
+                const reader = new FileReader();
+                reader.onload = () => resolve(reader.result);
+                reader.onerror = reject;
+                reader.readAsDataURL(blob);
+            });
+        }
+
+        async function createShaderModZipBlob(shaderInstance) {
+            if (!(window.zip || window.opener.zip)) { return console.error("zip module not present. shader:", shaderInstance); };
+            const zip = window.zip || window.opener.zip;
+            const zipFileWriter = new zip.BlobWriter();
+            const zipWriter = new zip.ZipWriter(zipFileWriter);
+            await zipWriter.add("shaders/shader.json", new zip.TextReader(shaderInstance.toJSONString()));
+            await zipWriter.close();
+            return await zipFileWriter.getData();
+        }
+
+        function downloadZipBlob(zipFileBlob, filename = "krunk_shader") {
+            const link = document.createElement("a");
+            link.href = URL.createObjectURL(zipFileBlob);
+            link.download = filename + ".zip";
+            document.body.appendChild(link);
+            link.click();
+            link.remove();
+        }
+
+        function promptAddUniform() {
+            const key = prompt("Enter uniform key:");
+            if (key === null || !key.trim()) return;
+            const value = prompt("Enter uniform value (or leave empty for null):");
+            if (value === null) return;
+            currentShader.uniforms[key.trim()] = {value: value.trim() ? parseFloat(value.trim()) : null};
+            alert(`Uniform '${key.trim()}' added.`);
+        }
+
+        function promptRemoveUniform() {
+            const key = prompt("Enter key of uniform to remove:");
+            if (key === null || !key.trim()) return;
+            if (key.trim() in currentShader.uniforms) {
+                delete currentShader.uniforms[key.trim()];
+                alert(`Uniform '${key.trim()}' removed.`);
+            }
+        }
+
+        function toggleInfo() {
+            const isHidden = infoPopup.style.display === 'none' || !infoPopup.style.display;
+            infoPopup.style.display = isHidden ? 'block' : 'none';
+            infoOverlay.style.display = isHidden ? 'block' : 'none';
+            if (isHidden) {
+                const uniformsStr = Object.entries(currentShader.uniforms).map(([k, v]) => `${k}: ${v.value}`).join('<br>') || 'None';
+                infoPopup.innerHTML = `
+                    <strong>${currentShader.name}</strong><br><br>
+                    <strong>Created At:</strong> ${new Date(currentShader.createdAt).toLocaleString()}<br>
+                    <strong>Last Modified:</strong> ${new Date(currentShader.lastModified).toLocaleString()}<br><br>
+                    <strong>Uniforms:</strong><br>${uniformsStr}
+                `;
+            }
+        }
+
+        updateLineNumbers();
+    </script>
+</body>
+
+</html>
