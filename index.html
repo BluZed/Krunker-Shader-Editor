@@ -286,7 +286,7 @@
         function importjson() {
             let jsondata = window.prompt("Enter JSON data: ");
             if(jsondata){
-                jsondata = JSON.parse(importjson);
+                jsondata = JSON.parse(jsondata);
                 if(jsondata.vertexShader && jsondata.fragmentShader){
                     currentShader = new KrnkShader().fromJSON(jsondata);
                 }
