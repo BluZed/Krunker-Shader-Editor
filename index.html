@@ -305,6 +305,7 @@
         }
 
         function clearShaders() {
+            try{
             window.opener.showWindow(1);
             window.opener.windows[0].changeTab(window.opener.windows[0].tabs.advanced.map(e=>e.name.toLowerCase()).indexOf("render"));
             (new DOMParser().parseFromString(window.opener.windows[0].getSettings(), 'text/html')).querySelectorAll("input[type=checkbox]").forEach(el => {
@@ -315,13 +316,14 @@
                 }
             })
             window.opener.closWind()
+            }catch{
+            alert("could not clear shaders automatically. please manually uncheck shaders from settings.");
+            }
         }
 
         async function loadShaderIngame() {
             saveShader();
-            try{clearShaders()}catch{
-                alert("could not clear shaders automatically. please manually uncheck shaders from settings.");
-            };
+            clearShaders();
             const modBlob = await createShaderModZipBlob(currentShader);
             const modData = await blobToDataURL(modBlob);
             window.opener.loadModPack(modData);
